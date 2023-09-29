@@ -1,0 +1,126 @@
+SELECT DISTINCT sTagname
+	,sDescription
+	,sUnit
+	,N'Real'
+	,N'-'
+	,rHHA
+	,rPHA
+	,rPLA
+	,rLLA
+	,'XHQCache##XHQCacheGroup##real####' || sTagName || '####select rValue, dtDate 
+	from {col_DCS_RealTime} where sTagname = '''|| sTagname || ''' order by dtDate desc##0##60000################Database##False##Undefined##Default################################0'
+FROM {col_DCS_RealTime}
+
+union
+
+SELECT DISTINCT sTagname
+	,sDescription
+	,sUnit
+	,N'Real'
+	,N'-'
+	,rHHA
+	,rPHA
+	,rPLA
+	,rLLA
+	,'XHQCache##XHQCacheGroup##real####' || sTagName || '####select rValue, dtDate 
+	from {col_DCS_Historical} where sTagname = '''|| sTagname || ''' order by dtDate desc##0##60000################Database##True##Undefined##Default################################0'
+FROM {col_DCS_Historical}
+
+Union
+SELECT DISTINCT sTagName
+	,N'-'
+	,sUnit
+        ,N'real'
+	,N'-'
+	,rH_Target_Lim as rHTargetLim
+	,rHH_Lim as rHH
+	,rLL_Lim as rLL
+	,rL_Target_Lim as rLTargetLim
+	,'XHQCache##XHQCacheGroup##real####' || sTagName|| '####select rValue, dtDate
+from {col_Lab_OverviewDataMart_Daily} where sTagName = '''|| sTagName || ''' order by dtDate desc####0'
+FROM {col_Lab_OverviewDataMart_Daily} where sTagName is not null
+
+Union
+SELECT DISTINCT sTagname
+	,N'-'
+	,N'-'
+,N'real'
+	,N'-'
+	,0 as rHH
+	,0 as rH
+	,0 as rL
+	,0 as rLL
+	,'XHQCache##XHQCacheGroup##real####' || sTagName || '####select rValue, dtDate
+from {col_ProductionData_Daily_new_Hau} where sTagname = '''|| sTagname || ''' order by dtDate desc####0'
+FROM {col_ProductionData_Daily_new_Hau} where sTagname is not null
+
+
+Union
+SELECT DISTINCT sTagname
+	,N'-'
+	,N'-'
+,N'real'
+	,N'-'
+	,0 as rHH
+	,0 as rH
+	,0 as rL
+	,0 as rLL
+	,'XHQCache##XHQCacheGroup##real####' || sTagName || '####select rValue, dtDate
+from {col_ProductionDataMart_Monthly} where sTagname = '''|| sTagname || ''' order by dtDate desc####0'
+FROM {col_ProductionDataMart_Monthly} where sTagname is not null
+
+Union
+SELECT DISTINCT sTagname
+	,N'-'
+	,N'-'
+,N'real'
+	,N'-'
+	,0 as rHH
+	,0 as rH
+	,0 as rL
+	,0 as rLL
+	,'XHQCache##XHQCacheGroup##real####' || sTagName || '####select rValue, dtDate
+from {col_ProductionDataMart_Yearly} where sTagname = '''|| sTagname || ''' order by dtDate desc####0'
+FROM {col_ProductionDataMart_Yearly} where sTagname is not null
+
+Union
+SELECT DISTINCT sTagname
+	,N'-'
+	,N'-'
+,N'real'
+	,N'-'
+	,0 as rHH
+	,0 as rH
+	,0 as rL
+	,0 as rLL
+	,'XHQCache##XHQCacheGroup##real####' || sTagName || '####select rValue, dtDate
+from {col_EquipmentDataMart_Daily} where sTagname = '''|| sTagname || ''' order by dtDate desc####0'
+FROM {col_EquipmentDataMart_Daily} where sTagname is not null
+
+Union
+SELECT DISTINCT sTagname
+	,N'-'
+	,N'-'
+,N'real'
+	,N'-'
+	,0 as rHH
+	,0 as rH
+	,0 as rL
+	,0 as rLL
+	,'XHQCache##XHQCacheGroup##real####' || sTagName || '####select rValue, dtDate
+from {col_EquipmentDataMart_Monthly} where sTagname = '''|| sTagname || ''' order by dtDate desc####0'
+FROM {col_EquipmentDataMart_Monthly} where sTagname is not null
+
+Union
+SELECT DISTINCT sTagname
+	,N'-'
+	,N'-'
+,N'real'
+	,N'-'
+	,0 as rHH
+	,0 as rH
+	,0 as rL
+	,0 as rLL
+	,'XHQCache##XHQCacheGroup##real####' || sTagName || '####select rValue, dtDate
+from {col_EquipmentDataMart_Yearly} where sTagname = '''|| sTagname || ''' order by dtDate desc####0'
+FROM {col_EquipmentDataMart_Yearly} where sTagname is not null
